@@ -29,7 +29,7 @@ pub enum FuturesMarket {
 }
 
 impl FuturesWebsocketAPI {
-    fn params(self, market: &FuturesMarket, subscription: &str) -> String {
+    pub fn params(self, market: &FuturesMarket, subscription: &str) -> String {
         let baseurl = match market {
             FuturesMarket::USDM => "wss://fstream.binance.com",
             FuturesMarket::COINM => "wss://dstream.binance.com",
@@ -130,7 +130,7 @@ impl<'a> FuturesWebSockets<'a> {
         self.connect_wss(&FuturesWebsocketAPI::MultiStream.params(market, &endpoints.join("/")))
     }
 
-    fn connect_wss(&mut self, wss: &str) -> Result<()> {
+    pub fn connect_wss(&mut self, wss: &str) -> Result<()> {
         let url = Url::parse(wss)?;
         match connect(url) {
             Ok(answer) => {
@@ -153,7 +153,7 @@ impl<'a> FuturesWebSockets<'a> {
         self.handle_msg(msg)
     }
 
-    fn handle_msg(&mut self, msg: &str) -> Result<()> {
+    pub fn handle_msg(&mut self, msg: &str) -> Result<()> {
         let value: serde_json::Value = serde_json::from_str(msg)?;
 
         if let Some(data) = value.get("data") {
