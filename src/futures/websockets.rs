@@ -77,7 +77,7 @@ pub struct FuturesWebSockets<'a> {
     handler: Box<dyn FnMut(FuturesWebsocketEvent) -> Result<()> + 'a>,
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Clone)]
 #[serde(untagged)]
 pub enum FuturesEvents {
     Vec(Vec<DayTickerEvent>),
