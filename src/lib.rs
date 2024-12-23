@@ -16,6 +16,7 @@
 )]
 
 mod client;
+mod clientV2;
 pub mod errors;
 pub mod util;
 
