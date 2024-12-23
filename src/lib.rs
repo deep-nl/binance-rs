@@ -24,6 +24,7 @@ pub mod model;
 
 pub mod account;
 pub mod api;
+pub mod apiV2;
 pub mod config;
 pub mod general;
 pub mod market;
