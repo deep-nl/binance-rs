@@ -4,4 +4,5 @@ pub mod general;
 pub mod market;
 pub mod model;
 pub mod userstream;
+pub mod userstreamV2;
 pub mod websockets;
