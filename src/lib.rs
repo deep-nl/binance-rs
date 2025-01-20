@@ -23,6 +23,7 @@ pub mod util;
 pub mod model;
 
 pub mod account;
+pub mod accountV2;
 pub mod api;
 pub mod apiV2;
 pub mod config;
@@ -30,6 +31,7 @@ pub mod general;
 pub mod market;
 pub mod savings;
 pub mod userstream;
+pub mod userstreamV2;
 pub mod websockets;
 
 pub mod futures;
