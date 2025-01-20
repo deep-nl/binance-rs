@@ -1,6 +1,6 @@
-// use crate::accountV2::Account;
+use crate::accountV2::Account;
 // use crate::client::Client;
-use crate::clientV2::AsyncClient;
+use crate::clientV2::AsyncClient as Client;
 use crate::config::Config;
 use crate::futures::accountV2::FuturesAccount;
 // use crate::futures::general::FuturesGeneral;
@@ -192,20 +192,20 @@ pub trait Binance {
 //     }
 // }
 
-// impl Binance for Account {
-//     fn new(api_key: Option<String>, secret_key: Option<String>) -> Account {
-//         Self::new_with_config(api_key, secret_key, &Config::default())
-//     }
+impl Binance for Account {
+    fn new(api_key: Option<String>, secret_key: Option<String>) -> Account {
+        Self::new_with_config(api_key, secret_key, &Config::default())
+    }
 
-//     fn new_with_config(
-//         api_key: Option<String>, secret_key: Option<String>, config: &Config,
-//     ) -> Account {
-//         Account {
-//             client: Client::new(api_key, secret_key, config.rest_api_endpoint.clone()),
-//             recv_window: config.recv_window,
-//         }
-//     }
-// }
+    fn new_with_config(
+        api_key: Option<String>, secret_key: Option<String>, config: &Config,
+    ) -> Account {
+        Account {
+            client: Client::new(api_key, secret_key, config.rest_api_endpoint.clone()),
+            recv_window: config.recv_window,
+        }
+    }
+}
 
 // impl Binance for Savings {
 //     fn new(api_key: Option<String>, secret_key: Option<String>) -> Self {
@@ -302,7 +302,7 @@ impl Binance for FuturesAccount {
         api_key: Option<String>, secret_key: Option<String>, config: &Config,
     ) -> Self {
         Self {
-            client: AsyncClient::new(
+            client: Client::new(
                 api_key,
                 secret_key,
                 config.futures_rest_api_endpoint.clone(),
@@ -321,7 +321,7 @@ impl Binance for FuturesUserStream {
         api_key: Option<String>, secret_key: Option<String>, config: &Config,
     ) -> FuturesUserStream {
         FuturesUserStream {
-            client: AsyncClient::new(
+            client: Client::new(
                 api_key,
                 secret_key,
                 config.futures_rest_api_endpoint.clone(),
