@@ -6,6 +6,7 @@ use crate::futures::accountV2::FuturesAccount;
 // use crate::futures::general::FuturesGeneral;
 // use crate::futures::market::FuturesMarket;
 use crate::futures::userstreamV2::FuturesUserStream;
+use crate::userstreamV2::UserStream;
 // use crate::general::General;
 // use crate::market::Market;
 // use crate::userstream::UserStream;
@@ -237,20 +238,20 @@ impl Binance for Account {
 //     }
 // }
 
-// impl Binance for UserStream {
-//     fn new(api_key: Option<String>, secret_key: Option<String>) -> UserStream {
-//         Self::new_with_config(api_key, secret_key, &Config::default())
-//     }
+impl Binance for UserStream {
+    fn new(api_key: Option<String>, secret_key: Option<String>) -> UserStream {
+        Self::new_with_config(api_key, secret_key, &Config::default())
+    }
 
-//     fn new_with_config(
-//         api_key: Option<String>, secret_key: Option<String>, config: &Config,
-//     ) -> UserStream {
-//         UserStream {
-//             client: Client::new(api_key, secret_key, config.rest_api_endpoint.clone()),
-//             recv_window: config.recv_window,
-//         }
-//     }
-// }
+    fn new_with_config(
+        api_key: Option<String>, secret_key: Option<String>, config: &Config,
+    ) -> UserStream {
+        UserStream {
+            client: Client::new(api_key, secret_key, config.rest_api_endpoint.clone()),
+            recv_window: config.recv_window,
+        }
+    }
+}
 
 // *****************************************************
 //              Binance Futures API
