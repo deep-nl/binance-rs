@@ -58,7 +58,7 @@ pub struct WebSockets<'a> {
 
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(untagged)]
-enum Events {
+pub enum Events {
     Vec(Vec<DayTickerEvent>),
     BalanceUpdateEvent(BalanceUpdateEvent),
     DayTickerEvent(DayTickerEvent),
